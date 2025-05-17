@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Portal Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.min.js"></script>
+</head>
+<body>
+  <div id="login-container">
+    <h2>Login to Student Portal</h2>
+   
+    <input type="email" id="email" placeholder="Email" autocomplete="username" />
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password" />
+    <button onclick="login()">Login</button>
+    <p class="error" id="login-error"></p>
+  </div>
+
+  <div id="portal-container" class="hidden">
+    <div class="portal-layout">
+      <nav class="sidebar">
+        <button id="logout-btn" onclick="logout()">Logout</button>
+      </nav>
+
+      <main>
+        <header>
+          <h2>Welcome, <span id="user-role"></span></h2>
+        </header>
+
+        <div class="nav">
+          <button onclick="showSection('account')">Account</button>
+          <button onclick="showSection('subject')">Course</button>
+          <button onclick="showSection('check')">Check Scores</button>
+        </div>
+
+       <section id="account-section" class="section hidden">
+          <h3>Account Information</h3>
+          <p>Name: <span id="account-name"></span></p>
+          <p>Student Number: <span id="account-number"></span></p>
+          <p>Year Level: <span id="account-year"></span></p>
+          <p>Semester: <span id="account-semester"></span></p>
+          <p>Status: <span id="account-status"></span></p>
+        </section>
+
+
+        <section id="subject-section" class="section hidden">
+          <h3>Course: FILDIS</h3>
+          <div id="module-list" class="list-container">
+            <h4>Modules</h4>
+            <div class="list-items" id="module-buttons">
+              <button onclick="openLesson(1)">Module 1</button>
+              <button onclick="openLesson(2)">Module 2</button>
+              <button onclick="openLesson(3)">Module 3</button>
+              <button onclick="openLesson(4)">Module 4</button>
+              <button onclick="openLesson(5)">Module 5</button>
+              <button onclick="openLesson(7)">Module 7</button>
+              <button onclick="openLesson(8)">Module 8</button>
+              <button onclick="openLesson(9)">Module 9</button>
+              <button onclick="openLesson(10)">Module 10</button>
+              <button onclick="openLesson(11)">Module 11</button>
+              <button onclick="openLesson(13)">Module 13</button>
+              <button onclick="openLesson(14)">Module 14</button>
+              <button onclick="openLesson(15)">Module 15</button>
+              <button onclick="openLesson(16)">Module 16</button>
+              <button onclick="openLesson(17)">Module 17</button>
+            </div>
+          </div>
+          <div id="quiz-list" class="list-container">
+            <h4>Quizzes</h4>
+            <div class="list-items">
+              <button onclick="startQuiz(1)">Quiz for Module 1</button>
+              <button onclick="startQuiz(2)">Quiz for Module 2</button>
+              <button onclick="startQuiz(3)">Quiz for Module 3</button>
+              <button onclick="startQuiz(4)">Quiz for Module 4</button>
+              <button onclick="startQuiz(5)">Quiz for Module 5</button>
+              <button onclick="startQuiz(7)">Quiz for Module 7</button>
+              <button onclick="startQuiz(8)">Quiz for Module 8</button>
+              <button onclick="startQuiz(9)">Quiz for Module 9</button>
+              <button onclick="startQuiz(10)">Quiz for Module 10</button>
+              <button onclick="startQuiz(11)">Quiz for Module 11</button>
+              <button onclick="startQuiz(13)">Quiz for Module 13</button>
+              <button onclick="startQuiz(14)">Quiz for Module 14</button>
+              <button onclick="startQuiz(15)">Quiz for Module 15</button>
+              <button onclick="startQuiz(16)">Quiz for Module 16</button>
+              <button onclick="startQuiz(17)">Quiz for Module 17</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="check-section" class="section hidden">
+          <h3>Quiz Score</h3>
+          <p>Your score: <span id="score"></span></p>
+        </section>
+
+        <section id="module-content" class="section hidden content-section"></section>
+        <section id="quiz-content" class="section hidden content-section">
+          <div id="timer"></div>
+          <div id="quizContainer"></div>
+          <div id="quizResult"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+  lucide.createIcons();
+</script>
+</body>
+</html>
