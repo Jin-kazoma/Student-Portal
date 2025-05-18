@@ -1,36 +1,36 @@
 const users = {
-admin: { role: 'Admin', email: '[admin@bcp.com](mailto:admin@bcp.com)', password: '1234' },
-teacher: { role: 'Teacher', email: '[teacher@bcp.com](mailto:teacher@bcp.com)', password: '1234' },
-clifford: {
-role: 'Student',
-email: 'clifford@bcp.com',
-password: '1234',
-name: 'Clifford Guda',
-studentNumber: '2025001',
-year: '1st Year',
-semester: '1st Semester',
-status: 'Regular',
-},
-jordan: {
-role: 'Student',
-email: 'jordan@bcp.com',
-password: '1234',
-name: 'Jordan Nacion',
-studentNumber: '2025002',
-year: '2nd Year',
-semester: '1st Semester',
-status: 'Regular',
-},
-ryle: {
-role: 'Student',
-email: 'ryle@bcp.com',
-password: '1234',
-name: 'Ryle Resseles',
-studentNumber: '2025003',
-year: '3rd Year',
-semester: '2nd Semester',
-status: 'Regular',
-},
+  admin: { role: 'Admin', email: 'admin@bcp.com', password: '1234' },
+  teacher: { role: 'Teacher', email: 'teacher@bcp.com', password: '1234' },
+  clifford: {
+    role: 'Student',
+    email: 'clifford@bcp.com',
+    password: '1234',
+    name: 'Clifford Guda',
+    studentNumber: '2025001',
+    year: '1st Year',
+    semester: '1st Semester',
+    status: 'Regular',
+  },
+  jordan: {
+    role: 'Student',
+    email: 'jordan@bcp.com',
+    password: '1234',
+    name: 'Jordan Nacion',
+    studentNumber: '2025002',
+    year: '2nd Year',
+    semester: '1st Semester',
+    status: 'Regular',
+  },
+  ryle: {
+    role: 'Student',
+    email: 'ryle@bcp.com',
+    password: '1234',
+    name: 'Ryle Resseles',
+    studentNumber: '2025003',
+    year: '3rd Year',
+    semester: '2nd Semester',
+    status: 'Regular',
+  },
 };
 
 
@@ -305,7 +305,8 @@ function showPortal() {
   portalContainer.classList.remove('hidden');
   userRoleSpan.textContent = currentUser.username;
 
-  accountName.textContent = currentUser.username;
+  
+  accountName.textContent = currentUser.name || currentUser.username;
   accountNumber.textContent = "2025-0001";
   accountYear.textContent = "1st Year";
   accountSemester.textContent = "1st Semester";
