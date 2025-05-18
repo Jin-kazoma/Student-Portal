@@ -340,7 +340,7 @@ function showSection(sectionName) {
 }
 
 function openLesson(moduleNumber) {
-  const pdfPath = `lesson/module${moduleNumber}.pdf`;
+  const pdfPath = `module${moduleNumber}.pdf`;
   window.open(pdfPath, '_blank', 'noopener,noreferrer');
 }
 
