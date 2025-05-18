@@ -358,6 +358,7 @@ header h2 {
   border-radius: 1rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   font-family: 'Poppins', sans-serif;
+    font-weight: bold;
   color: #fff;
   max-width: 500px;
   margin: auto;
@@ -386,3 +387,4 @@ header h2 {
   font-weight: 600;
   color: #ffd1dc;
 }
+
