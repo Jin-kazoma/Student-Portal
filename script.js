@@ -334,7 +334,8 @@ function showSection(sectionName) {
 
 function openLesson(moduleNumber) {
   const pdfPath = `lesson/module${moduleNumber}.pdf`;
-  window.open(pdfPath, '_blank', 'noopener,noreferrer');
+  const viewerUrl = `https://docs.google.com/gview?url=https://jin-kazoma.github.io/Student-Portal/${pdfPath}&embedded=true`;
+  window.open(viewerUrl, '_blank', 'noopener,noreferrer');
 }
 
 
