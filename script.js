@@ -266,13 +266,6 @@ const quizContainer = document.getElementById('quizContainer');
 const quizResult = document.getElementById('quizResult');
 const timerDisplay = document.getElementById('timer');
 
-// Assuming you have a users object defined somewhere
-// Example:
-// const users = {
-//   john: { password: '123', role: 'student', scores: {} },
-//   jane: { password: 'abc', role: 'student', scores: {} }
-// };
-
 // LOGIN
 function login() {
   const emailInput = document.getElementById('email').value.trim().toLowerCase();
@@ -340,7 +333,7 @@ function showSection(sectionName) {
 }
 
 function openLesson(moduleNumber) {
-  const pdfPath = `module${moduleNumber}.pdf`;
+  const pdfPath = `lesson/module${moduleNumber}.pdf`;
   window.open(pdfPath, '_blank', 'noopener,noreferrer');
 }
 
