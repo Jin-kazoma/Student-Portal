@@ -288,12 +288,6 @@ function login() {
   if (!currentUser.scores) {
     currentUser.scores = {};
   }
-  const uploadBtn = document.getElementById('uploadModuleFileBtn');
-  if (currentUser.role === 'admin' && uploadBtn) {
-    uploadBtn.style.display = 'block';
-  } else if (uploadBtn) {
-    uploadBtn.style.display = 'none';
-  }
 
   loginError.textContent = '';
   showPortal();
