@@ -18,19 +18,21 @@
 body {
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 100vh;
-  background-image: url('https://wallpapers.com/images/hd/anime-4k-background-kt5gq2kbvivtu2qv.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-image: url('https://i1.wp.com/wallpapercave.com/wp/wp2757868.gif'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-#login-container {
+
+
+ #login-container {
   background: rgba(255, 192, 203, 0.50);
   padding: 2rem 3rem;
   border-radius: 12px;
@@ -95,6 +97,92 @@ header h2 {
 .hidden {
   display: none !important;
 }
+
+/* --- Sign Up Form Styling --- */
+#signup-container {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--pink-10);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  max-width: 350px;
+  margin: 40px auto;
+  padding: 32px 28px 24px 28px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.7s;
+}
+
+#signup-container h2 {
+  margin-bottom: 18px;
+  color: var(--pink-4, #d988b9);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+#signup-container input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border: 1.5px solid var(--pink-3, #e2b2ca);
+  border-radius: 7px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+#signup-container input:focus {
+  border-color: var(--pink-4, #d988b9);
+  outline: none;
+}
+
+#signup-container button {
+  width: 100%;
+  padding: 10px 0;
+  background: var(--pink-4, #d988b9);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+
+#signup-container button:hover {
+  background: var(--pink-5, #d68fba);
+}
+
+#signup-container .error {
+  color: #d32f2f;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+#signup-container p {
+  margin-top: 8px;
+  font-size: 0.98rem;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif; 
+  color: #111;
+}
+
+#signup-container a {
+  color: var(--pink-9, #8e4170); 
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 400;   
+  font-family: 'Inter', sans-serif; 
+}
+
+#signup-container a:hover {
+  color: var(--pink-10, #7e3c64); /* Even darker on hover */
+}
+
 
 /* Portal Layout */
 .portal-layout {
@@ -387,4 +475,3 @@ header h2 {
   font-weight: 600;
   color: #ffd1dc;
 }
-
