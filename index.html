@@ -9,12 +9,23 @@
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.min.js"></script>
 </head>
 <body>
+  <div id="signup-container" class="hidden">  
+  <h2>Sign Up</h2>
+  <input type="text" id="signup-name" placeholder="Full Name" required />
+  <input type="email" id="signup-email" placeholder="Email" required />
+  <input type="password" id="signup-password" placeholder="Password" required />
+  <button onclick="signup()">Sign Up</button>
+  <p>Already have an account? <a href="#" onclick="showLoginForm()">Login here</a></p>
+  <p class="error" id="signup-error"></p>
+
+</div>
   <div id="login-container">
     <h2>Login to Student Portal</h2>
    
     <input type="email" id="email" placeholder="Email" autocomplete="username" />
     <input type="password" id="password" placeholder="Password" autocomplete="current-password" />
     <button onclick="login()">Login</button>
+    <p>Don't have an account? <a href="#" onclick="showSignupForm()">Sign up here</a></p>
     <p class="error" id="login-error"></p>
   </div>
 
@@ -31,9 +42,18 @@
 
         <div class="nav">
           <button onclick="showSection('account')">Account</button>
-          <button onclick="showSection('subject')">Course</button>
+          <button onclick="showSection('courses')">Courses</button>
           <button onclick="showSection('check')">Check Scores</button>
         </div>
+
+        <section id="courses-section" class="section hidden">
+  <h3>Select a Subject</h3>
+  <div class="list-items">
+    <button onclick="showSection('fildis')">FILDIS</button>
+    <button onclick="showSection('komfil')">KOMFIL</button>
+    <button onclick="showSection('soslit')">SOSLIT</button>
+  </div>
+</section>
 
       <section id="account-section" class="section hidden">
   <h3>Account Information</h3>
@@ -46,49 +66,138 @@
 
 
 
-        <section id="subject-section" class="section hidden">
+        <section id="fildis-section" class="section hidden">
           <h3>Course: FILDIS</h3>
           <div id="module-list" class="list-container">
             <h4>Modules</h4>
             <div class="list-items" id="module-buttons">
-              <button onclick="openLesson(1)">Module 1</button>
-              <button onclick="openLesson(2)">Module 2</button>
-              <button onclick="openLesson(3)">Module 3</button>
-              <button onclick="openLesson(4)">Module 4</button>
-              <button onclick="openLesson(5)">Module 5</button>
-              <button onclick="openLesson(7)">Module 7</button>
-              <button onclick="openLesson(8)">Module 8</button>
-              <button onclick="openLesson(9)">Module 9</button>
-              <button onclick="openLesson(10)">Module 10</button>
-              <button onclick="openLesson(11)">Module 11</button>
-              <button onclick="openLesson(13)">Module 13</button>
-              <button onclick="openLesson(14)">Module 14</button>
-              <button onclick="openLesson(15)">Module 15</button>
-              <button onclick="openLesson(16)">Module 16</button>
-              <button onclick="openLesson(17)">Module 17</button>
+              <button onclick="openLesson('fildis',1)">Module 1</button>
+              <button onclick="openLesson('fildis',2)">Module 2</button>
+              <button onclick="openLesson('fildis',3)">Module 3</button>
+              <button onclick="openLesson('fildis',4)">Module 4</button>
+              <button onclick="openLesson('fildis',5)">Module 5</button>
+              <button onclick="openLesson('fildis',7)">Module 7</button>
+              <button onclick="openLesson('fildis',8)">Module 8</button>
+              <button onclick="openLesson('fildis',9)">Module 9</button>
+              <button onclick="openLesson('fildis',10)">Module 10</button>
+              <button onclick="openLesson('fildis',11)">Module 11</button>
+              <button onclick="openLesson('fildis',13)">Module 13</button>
+              <button onclick="openLesson('fildis',14)">Module 14</button>
+              <button onclick="openLesson('fildis',15)">Module 15</button>
+              <button onclick="openLesson('fildis',16)">Module 16</button>
+              <button onclick="openLesson('fildis',17)">Module 17</button>
             </div>
           </div>
           <div id="quiz-list" class="list-container">
             <h4>Quizzes</h4>
             <div class="list-items">
-              <button onclick="startQuiz(1)">Quiz for Module 1</button>
-              <button onclick="startQuiz(2)">Quiz for Module 2</button>
-              <button onclick="startQuiz(3)">Quiz for Module 3</button>
-              <button onclick="startQuiz(4)">Quiz for Module 4</button>
-              <button onclick="startQuiz(5)">Quiz for Module 5</button>
-              <button onclick="startQuiz(7)">Quiz for Module 7</button>
-              <button onclick="startQuiz(8)">Quiz for Module 8</button>
-              <button onclick="startQuiz(9)">Quiz for Module 9</button>
-              <button onclick="startQuiz(10)">Quiz for Module 10</button>
-              <button onclick="startQuiz(11)">Quiz for Module 11</button>
-              <button onclick="startQuiz(13)">Quiz for Module 13</button>
-              <button onclick="startQuiz(14)">Quiz for Module 14</button>
-              <button onclick="startQuiz(15)">Quiz for Module 15</button>
-              <button onclick="startQuiz(16)">Quiz for Module 16</button>
-              <button onclick="startQuiz(17)">Quiz for Module 17</button>
+              <button onclick="startQuiz('fildis',1)">Quiz for Module 1</button>
+              <button onclick="startQuiz('fildis',2)">Quiz for Module 2</button>
+              <button onclick="startQuiz('fildis',3)">Quiz for Module 3</button>
+              <button onclick="startQuiz('fildis',4)">Quiz for Module 4</button>
+              <button onclick="startQuiz('fildis',5)">Quiz for Module 5</button>
+              <button onclick="startQuiz('fildis',7)">Quiz for Module 7</button>
+              <button onclick="startQuiz('fildis',8)">Quiz for Module 8</button>
+              <button onclick="startQuiz('fildis',9)">Quiz for Module 9</button>
+              <button onclick="startQuiz('fildis',10)">Quiz for Module 10</button>
+              <button onclick="startQuiz('fildis',11)">Quiz for Module 11</button>
+              <button onclick="startQuiz('fildis',13)">Quiz for Module 13</button>
+              <button onclick="startQuiz('fildis',14)">Quiz for Module 14</button>
+              <button onclick="startQuiz('fildis',15)">Quiz for Module 15</button>
+              <button onclick="startQuiz('fildis',16)">Quiz for Module 16</button>
+              <button onclick="startQuiz('fildis',17)">Quiz for Module 17</button>
             </div>
           </div>
         </section>
+
+        <section id="komfil-section" class="section hidden">
+          <h3>Course: KOMFIL</h3>
+          <div id="module-list" class="list-container">
+            <h4>Modules</h4>
+            <div class="list-items" id="module-buttons">
+              <button onclick="openLesson('komfil',1)">Module 1</button>
+              <button onclick="openLesson('komfil',2)">Module 2</button>
+              <button onclick="openLesson('komfil',3)">Module 3</button>
+              <button onclick="openLesson('komfil',4)">Module 4</button>
+              <button onclick="openLesson('komfil',5)">Module 5</button>
+              <button onclick="openLesson('komfil',7)">Module 7</button>
+              <button onclick="openLesson('komfil',8)">Module 8</button>
+              <button onclick="openLesson('komfil',9)">Module 9</button>
+              <button onclick="openLesson('komfil',10)">Module 10</button>
+              <button onclick="openLesson('komfil',11)">Module 11</button>
+              <button onclick="openLesson('komfil',13)">Module 13</button>
+              <button onclick="openLesson('komfil',14)">Module 14</button>
+              <button onclick="openLesson('komfil',15)">Module 15</button>
+              <button onclick="openLesson('komfil',16)">Module 16</button>
+              <button onclick="openLesson('komfil',17)">Module 17</button>
+            </div>
+          </div>
+          <div id="quiz-list" class="list-container">
+            <h4>Quizzes</h4>
+            <div class="list-items">
+              <button onclick="startQuiz('komfil',1)">Quiz for Module 1</button>
+              <button onclick="startQuiz('komfil',2)">Quiz for Module 2</button>
+              <button onclick="startQuiz('komfil',3)">Quiz for Module 3</button>
+              <button onclick="startQuiz('komfil',4)">Quiz for Module 4</button>
+              <button onclick="startQuiz('komfil',5)">Quiz for Module 5</button>
+              <button onclick="startQuiz('komfil',7)">Quiz for Module 7</button>
+              <button onclick="startQuiz('komfil',8)">Quiz for Module 8</button>
+              <button onclick="startQuiz('komfil',9)">Quiz for Module 9</button>
+              <button onclick="startQuiz('komfil',10)">Quiz for Module 10</button>
+              <button onclick="startQuiz('komfil',11)">Quiz for Module 11</button>
+              <button onclick="startQuiz('komfil',13)">Quiz for Module 13</button>
+              <button onclick="startQuiz('komfil',14)">Quiz for Module 14</button>
+              <button onclick="startQuiz('komfil',15)">Quiz for Module 15</button>
+              <button onclick="startQuiz('komfil',16)">Quiz for Module 16</button>
+              <button onclick="startQuiz('komfil',17)">Quiz for Module 17</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="soslit-section" class="section hidden">
+          <h3>Course: SOSLIT</h3>
+          <div id="module-list" class="list-container">
+            <h4>Modules</h4>
+            <div class="list-items" id="module-buttons">
+              <button onclick="openLesson('soslit',1)">Module 1</button>
+              <button onclick="openLesson('soslit',2)">Module 2</button>
+              <button onclick="openLesson('soslit',3)">Module 3</button>
+              <button onclick="openLesson('soslit',4)">Module 4</button>
+              <button onclick="openLesson('soslit',5)">Module 5</button>
+              <button onclick="openLesson('soslit',7)">Module 7</button>
+              <button onclick="openLesson('soslit',8)">Module 8</button>
+              <button onclick="openLesson('soslit',9)">Module 9</button>
+              <button onclick="openLesson('soslit',10)">Module 10</button>
+              <button onclick="openLesson('soslit',11)">Module 11</button>
+              <button onclick="openLesson('soslit',13)">Module 13</button>
+              <button onclick="openLesson('soslit',14)">Module 14</button>
+              <button onclick="openLesson('soslit',15)">Module 15</button>
+              <button onclick="openLesson('soslit',16)">Module 16</button>
+              <button onclick="openLesson('soslit',17)">Module 17</button>
+            </div>
+          </div>
+          <div id="quiz-list" class="list-container">
+            <h4>Quizzes</h4>
+            <div class="list-items">
+              <button onclick="startQuiz('soslit',1)">Quiz for Module 1</button>
+              <button onclick="startQuiz('soslit',2)">Quiz for Module 2</button>
+              <button onclick="startQuiz('soslit',3)">Quiz for Module 3</button>
+              <button onclick="startQuiz('soslit',4)">Quiz for Module 4</button>
+              <button onclick="startQuiz('soslit',5)">Quiz for Module 5</button>
+              <button onclick="startQuiz('soslit',7)">Quiz for Module 7</button>
+              <button onclick="startQuiz('soslit',8)">Quiz for Module 8</button>
+              <button onclick="startQuiz('soslit',9)">Quiz for Module 9</button>
+              <button onclick="startQuiz('soslit',10)">Quiz for Module 10</button>
+              <button onclick="startQuiz('soslit',11)">Quiz for Module 11</button>
+              <button onclick="startQuiz('soslit',13)">Quiz for Module 13</button>
+              <button onclick="startQuiz('soslit',14)">Quiz for Module 14</button>
+              <button onclick="startQuiz('soslit',15)">Quiz for Module 15</button>
+              <button onclick="startQuiz('soslit',16)">Quiz for Module 16</button>
+              <button onclick="startQuiz('soslit',17)">Quiz for Module 17</button>
+            </div>
+          </div>
+        </section>
+
 
         <section id="check-section" class="section hidden">
           <h3>Quiz Score</h3>
