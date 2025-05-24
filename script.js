@@ -1,4 +1,3 @@
-
 const users = {
   admin: { role: 'Admin', email: 'admin@bcp.com', password: '1234' }, 
 };
@@ -7,6 +6,7 @@ const savedUsers = localStorage.getItem('users');
 if (savedUsers) {
   Object.assign(users, JSON.parse(savedUsers));
 }
+
 
 const allModules = {
   fildis:{
@@ -608,7 +608,6 @@ function showSignupForm() {
   signupContainer.classList.remove('hidden');
   signupError.textContent = '';
 }
-localStorage.setItem('users', JSON.stringify(users));
 
 function showLoginForm() {
   document.getElementById('signup-container').classList.add('hidden');
@@ -685,6 +684,15 @@ function showPortal() {
   portalContainer.classList.remove('hidden');
   userRoleSpan.textContent = currentUser.username;
 
+  // Show admin buttons if admin is logged in
+  if (currentUser.role === 'Admin') {
+    document.getElementById('admin-monitor-btn').style.display = '';
+    document.getElementById('admin-scores-btn').style.display = '';
+  } else {
+    document.getElementById('admin-monitor-btn').style.display = 'none';
+    document.getElementById('admin-scores-btn').style.display = 'none';
+  }
+
   accountName.textContent = currentUser.name || currentUser.username;
   accountNumber.textContent = currentUser.studentNumber || '';
   accountYear.textContent = currentUser.year || '';
@@ -695,6 +703,7 @@ function showPortal() {
 }
 
 function logout() {
+  if (currentUser) setUserOnlineStatus(currentUser.username, false);
   currentUser = null;
   loginContainer.classList.remove('hidden');
   portalContainer.classList.add('hidden');
@@ -702,13 +711,11 @@ function logout() {
   document.getElementById('password').value = '';
 }
 
-// ...existing code...
-
-// Track online status on login
 function login() {
   const emailInput = document.getElementById('email').value.trim().toLowerCase();
   const passwordInput = document.getElementById('password').value;
   const username = emailInput.split('@')[0];
+  
 
   if (!users[username]) {
     loginError.textContent = 'User not found';
@@ -720,6 +727,7 @@ function login() {
   }
 
   currentUser = { username, ...users[username] };
+  setUserOnlineStatus(username, true);
 
   // Ensure scores object exists
   if (!currentUser.scores) {
@@ -741,6 +749,24 @@ function showSection(sectionName) {
 
   // Special case: show scores if "check" section
   if (sectionName === 'check') showScores();
+
+  if (sectionName === 'admin-student-list') {
+    showStudentStatusList('admin-monitor-list-content');
+  }
+
+  if (sectionName === 'admin-monitor') {
+    if (currentUser && currentUser.role === 'Admin') {
+      document.getElementById('admin-monitor-section').classList.remove('hidden');
+      showStudentStatusList('admin-monitor-list-content');
+    } else {
+      alert('Access denied: Admins only.');
+    }
+  }
+
+  // === MOVE THIS INSIDE THE FUNCTION ===
+  if (sectionName === 'admin-all-scores') {
+    showAllStudentScores('admin-all-scores-content');
+  }
 }
 
 function openLesson(subject, moduleNumber) {
@@ -870,6 +896,8 @@ function endQuiz() {
     date: new Date().toLocaleString()
   };
 }
+users[currentUser.username].scores = currentUser.scores;
+localStorage.setItem('users', JSON.stringify(users));
 
 function startTimer() {
   timeLeft = 30;
@@ -894,6 +922,7 @@ function showScores() {
     checkSection.innerHTML += '<p>No scores recorded yet.</p>';
     return;
   }
+
 
   const table = document.createElement('table');
   table.border = 1;
@@ -926,3 +955,89 @@ function showScores() {
   table.appendChild(tbody);
   checkSection.appendChild(table);
 }
+
+function setUserOnlineStatus(username, status) {
+  if (users[username]) {
+    users[username].online = status;
+    localStorage.setItem('users', JSON.stringify(users));
+  }
+}
+function showStudentStatusList(containerId = 'student-list-content') {
+  // Always reload users from localStorage to get the latest accounts
+  const stored = localStorage.getItem('users');
+  if (stored) {
+    Object.assign(users, JSON.parse(stored));
+  }
+  const listDiv = document.getElementById(containerId);
+  if (!listDiv) return;
+  listDiv.innerHTML = '';
+  for (const username in users) {
+    if (users[username].role === 'Student') {
+      const status = users[username].online ? '🟢 Online' : '⚪ Offline';
+      const name = users[username].name || username;
+      const item = document.createElement('div');
+      item.textContent = `${name} (${users[username].email}) - ${status}`;
+      listDiv.appendChild(item);
+    }
+  }
+}
+
+// ...existing code...
+
+// Add this function at the bottom of your script.js file
+function showAllStudentScores(containerId = 'admin-all-scores-content') {
+  // Always reload users from localStorage to get the latest accounts
+  const stored = localStorage.getItem('users');
+  if (stored) {
+    Object.assign(users, JSON.parse(stored));
+  }
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '<h3>All Student Scores</h3>';
+
+  // Build table
+  const table = document.createElement('table');
+  table.border = 1;
+  table.style.borderCollapse = 'collapse';
+  table.style.width = '100%';
+
+  const thead = document.createElement('thead');
+  thead.innerHTML = `
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Module</th>
+      <th>Score</th>
+      <th>Date Taken</th>
+    </tr>
+  `;
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  for (const username in users) {
+    const user = users[username];
+    if (user.role === 'Student' && user.scores) {
+      for (const moduleNum in user.scores) {
+        const s = user.scores[moduleNum];
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${user.name || username}</td>
+          <td>${user.email}</td>
+          <td>${moduleNum}</td>
+          <td>${s.score} / ${s.total}</td>
+          <td>${s.date}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+  }
+  table.appendChild(tbody);
+  container.appendChild(table);
+}
+
+// Add this to your showSection function so admin can view all scores
+// ...existing code...
+if (sectionName === 'admin-all-scores') {
+  showAllStudentScores('admin-all-scores-content');
+}
+// ...existing code...
