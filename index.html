@@ -24,7 +24,7 @@
 </div>
 
   <div id="login-container">
-    <h2>Login</h2>
+    <h2>Login </h2>
    
     <input type="email" id="email" placeholder="Email" autocomplete="username" />
     <input type="password" id="password" placeholder="Password" autocomplete="current-password" />
@@ -36,11 +36,10 @@
   <div id="portal-container" class="hidden">
     <div class="portal-layout">
       <nav class="sidebar">
-        <button id="logout-btn" onclick="logout()">Logout</button>
+      <button id="logout-btn" onclick="logout()">Logout</button>
         <ul>
-        <li>This project was developed by Clifford Guda with assistance Lopez Cherice,and support from the rest of BSIT 12019 section. </li>  
-  
-    </ul>
+        <li>This project was developed by Clifford Guda with assistance Cherice Lopez,and support from the rest of BSIT 12019 section. </li> 
+        </ul>
       </nav>
 
       <main>
@@ -48,19 +47,30 @@
           <h2>Magandang Buhay, <span id="user-role"></span></h2>
         </header>
 
-      <!-- Add a class for tighter grouping if needed -->
 <div class="nav">
   <button onclick="showSection('account')">Account</button>
   <button onclick="showSection('courses')">Kurso</button>
   <span class="score-group">
     <button onclick="showSection('check')">Marka</button>
+    <button id="admin-monitor-btn" style="display:none;" onclick="showSection('admin-monitor')">Monitor Students</button>
+    <button id="admin-scores-btn" style="display:none;" onclick="showSection('admin-all-scores')">View All Student Scores</button>
   </span>
 </div>
 
-  <div id="admin-student-list-section" class="section hidden">
+ <div id="admin-student-list-section" class="section hidden">
   <h2>Student List</h2>
   <div id="student-list-content"></div>
 </div>
+
+<section id="admin-monitor-section" class="section hidden">
+  <h2>Admin Monitor</h2>
+  <div id="admin-monitor-list-content"></div>
+</section>
+
+<section id="admin-all-scores-section" class="section hidden">
+  <h2>All Student Scores</h2>
+  <div id="admin-all-scores-content"></div>
+</section>
 
      <section id="courses-section" class="section hidden">
   <h3>Select a Subject</h3>
