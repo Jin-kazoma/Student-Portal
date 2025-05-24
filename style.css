@@ -23,13 +23,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
- background-image: url('https://i1.wp.com/wallpapercave.com/wp/wp2757868.gif'); 
+  background-image: url('https://i1.wp.com/wallpapercave.com/wp/wp2757868.gif');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-
 
 
  #login-container {
