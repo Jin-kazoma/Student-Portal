@@ -23,11 +23,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('https://i1.wp.com/wallpapercave.com/wp/wp2757868.gif');
+ background-image: url('https://i1.wp.com/wallpapercave.com/wp/wp2757868.gif'); 
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
+
 
 
  #login-container {
@@ -204,6 +205,14 @@ header h2 {
   justify-content: space-between;
   padding: 1rem 1.5rem;
   color: var(--white);
+}
+
+main {
+  flex-grow: 1;
+  padding: 1rem 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar ul {
@@ -533,4 +542,24 @@ header h2 {
   color: #8e4170;
   box-shadow: 0 4px 16px rgba(176,87,141,0.15);
   transform: translateY(-4px) scale(1.03);
+}
+
+/* Student Status List Card Styles */
+#admin-monitor-list-content > div {
+  background: #fff0fa;
+  border: 1.5px solid var(--pink-8);
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin-bottom: 10px;
+  font-size: 1.08em;
+  box-shadow: 0 2px 8px rgba(176,87,141,0.06);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--pink-10);
+}
+
+#admin-monitor-list-content > div::before {
+  content: "👤";
+  font-size: 1.2em;
 }
