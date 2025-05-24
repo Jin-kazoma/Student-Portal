@@ -1,10 +1,12 @@
+
 const users = {
-  admin: { role: 'Admin', email: 'admin@bcp.com', password: '1234' },
-  teacher: { role: 'Teacher', email: 'teacher@bcp.com', password: '1234' },
-  
+  admin: { role: 'Admin', email: 'admin@bcp.com', password: '1234' }, 
 };
 
-
+const savedUsers = localStorage.getItem('users');
+if (savedUsers) {
+  Object.assign(users, JSON.parse(savedUsers));
+}
 
 const allModules = {
   fildis:{
@@ -606,19 +608,23 @@ function showSignupForm() {
   signupContainer.classList.remove('hidden');
   signupError.textContent = '';
 }
+localStorage.setItem('users', JSON.stringify(users));
 
 function showLoginForm() {
   document.getElementById('signup-container').classList.add('hidden');
   document.getElementById('login-container').classList.remove('hidden');
 }
 
-
 function signup() {
   const name = document.getElementById('signup-name').value.trim();
   const email = document.getElementById('signup-email').value.trim().toLowerCase();
   const password = document.getElementById('signup-password').value;
+  const studentNumber = document.getElementById('signup-number').value.trim();
+  const year = document.getElementById('signup-year').value.trim();
+  const semester = document.getElementById('signup-semester').value.trim();
+  const status = document.getElementById('signup-status').value.trim();
 
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !studentNumber || !year || !semester || !status) {
     signupError.textContent = 'Please fill in all fields.';
     return;
   }
@@ -634,19 +640,21 @@ function signup() {
     email,
     password,
     name,
-    studentNumber: '2025-' + Math.floor(1000 + Math.random() * 9000),
-    year: '1st Year',
-    semester: '1st Semester',
-    status: 'Regular',
+    studentNumber,
+    year,
+    semester,
+    status,
     scores: {}
   };
+
+  localStorage.setItem('users', JSON.stringify(users)); // <-- add this line
 
   signupError.textContent = '';
   alert('Account created successfully! Please login.');
   showLoginForm();
 }
 
-// LOGIN
+
 function login() {
   const emailInput = document.getElementById('email').value.trim().toLowerCase();
   const passwordInput = document.getElementById('password').value;
@@ -672,19 +680,16 @@ function login() {
   loginError.textContent = '';
   showPortal();
 }
-
 function showPortal() {
   loginContainer.classList.add('hidden');
   portalContainer.classList.remove('hidden');
   userRoleSpan.textContent = currentUser.username;
 
-  
   accountName.textContent = currentUser.name || currentUser.username;
-  accountNumber.textContent = "2025-0001";
-  accountYear.textContent = "1st Year";
-  accountSemester.textContent = "1st Semester";
-  accountStatus.textContent = currentUser.role;
-  accountPhoto.src = 'https://via.placeholder.com/100';
+  accountNumber.textContent = currentUser.studentNumber || '';
+  accountYear.textContent = currentUser.year || '';
+  accountSemester.textContent = currentUser.semester || '';
+  accountStatus.textContent = currentUser.status || '';
 
   showSection('account');
 }
@@ -696,6 +701,35 @@ function logout() {
   document.getElementById('email').value = '';
   document.getElementById('password').value = '';
 }
+
+// ...existing code...
+
+// Track online status on login
+function login() {
+  const emailInput = document.getElementById('email').value.trim().toLowerCase();
+  const passwordInput = document.getElementById('password').value;
+  const username = emailInput.split('@')[0];
+
+  if (!users[username]) {
+    loginError.textContent = 'User not found';
+    return;
+  }
+  if (users[username].password !== passwordInput) {
+    loginError.textContent = 'Incorrect password';
+    return;
+  }
+
+  currentUser = { username, ...users[username] };
+
+  // Ensure scores object exists
+  if (!currentUser.scores) {
+    currentUser.scores = {};
+  }
+
+  loginError.textContent = '';
+  showPortal();
+}
+
 
 function showSection(sectionName) {
   // Hide all sections
@@ -710,8 +744,34 @@ function showSection(sectionName) {
 }
 
 function openLesson(subject, moduleNumber) {
-  const pdfPath = `lesson/${subject}/module${moduleNumber}.pdf`;
-  window.open(pdfPath, '_blank', 'noopener,noreferrer');
+  document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
+  const moduleContent = document.getElementById('module-content');
+  moduleContent.classList.remove('hidden');
+  moduleContent.innerHTML = '';
+
+  // Create a container for the PDF picker cards
+  const pickerList = document.createElement('div');
+  pickerList.className = 'pdf-picker-list';
+
+  const pdfs = [
+    { label: 'PDF 1', path: `lesson/${subject}/module${moduleNumber}_1.pdf` },
+    { label: 'PDF 2', path: `lesson/${subject}/module${moduleNumber}_2.pdf` }
+  ];
+
+  pdfs.forEach(pdf => {
+    fetch(pdf.path, { method: 'HEAD' })
+      .then(response => {
+        if (response.ok) {
+          const card = document.createElement('div');
+          card.className = 'pdf-picker-card';
+          card.textContent = pdf.label;
+          card.onclick = () => window.open(pdf.path, '_blank' + Math.random(), 'noopener,noreferrer');
+          pickerList.appendChild(card);
+        }
+      });
+  });
+
+  moduleContent.appendChild(pickerList);
 }
 
 // QUIZ FUNCTIONS
