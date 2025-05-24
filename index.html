@@ -9,16 +9,20 @@
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.min.js"></script>
 </head>
 <body>
-  <div id="signup-container" class="hidden">  
+<div id="signup-container" class="hidden">  
   <h2>Sign Up</h2>
-  <input type="text" id="signup-name" placeholder="Full Name" required />
-  <input type="email" id="signup-email" placeholder="Email" required />
-  <input type="password" id="signup-password" placeholder="Password" required />
-  <button onclick="signup()">Sign Up</button>
+  <input type="text" id="signup-name" placeholder="Full Name" required>
+  <input type="email" id="signup-email" placeholder="Email" required>
+  <input type="password" id="signup-password" placeholder="Password" required>
+  <input type="text" id="signup-number" placeholder="Student Number" required>
+  <input type="text" id="signup-year" placeholder="Year Level (e.g. 1st Year)" required>
+  <input type="text" id="signup-semester" placeholder="Semester (e.g. 1st Semester)" required>
+  <input type="text" id="signup-status" placeholder="Status (e.g. Student)" required>
+  <button onclick="signup()">Create Account</button>
   <p>Already have an account? <a href="#" onclick="showLoginForm()">Login here</a></p>
   <p class="error" id="signup-error"></p>
-
 </div>
+
   <div id="login-container">
     <h2>Login to Student Portal</h2>
    
@@ -33,20 +37,34 @@
     <div class="portal-layout">
       <nav class="sidebar">
         <button id="logout-btn" onclick="logout()">Logout</button>
+        <ul>
+        <li>MAY AKDA</li>  
+      <li>Clifford Guda</li>
+      <li>Cherice Nicole Lopez</li>
+      <li>BSIT 12019</li>
+    </ul>
       </nav>
 
       <main>
         <header>
-          <h2>Welcome, <span id="user-role"></span></h2>
+          <h2>Magandang Buhay, <span id="user-role"></span></h2>
         </header>
 
-        <div class="nav">
-          <button onclick="showSection('account')">Account</button>
-          <button onclick="showSection('courses')">Courses</button>
-          <button onclick="showSection('check')">Check Scores</button>
-        </div>
+      <!-- Add a class for tighter grouping if needed -->
+<div class="nav">
+  <button onclick="showSection('account')">Account</button>
+  <button onclick="showSection('courses')">Kurso</button>
+  <span class="score-group">
+    <button onclick="showSection('check')">Marka</button>
+  </span>
+</div>
 
-        <section id="courses-section" class="section hidden">
+  <div id="admin-student-list-section" class="section hidden">
+  <h2>Student List</h2>
+  <div id="student-list-content"></div>
+</div>
+
+     <section id="courses-section" class="section hidden">
   <h3>Select a Subject</h3>
   <div class="list-items">
     <button onclick="showSection('fildis')">FILDIS</button>
@@ -55,16 +73,14 @@
   </div>
 </section>
 
-      <section id="account-section" class="section hidden">
+<section id="account-section" class="section hidden">
   <h3>Account Information</h3>
   <p><strong>Name:</strong> <span id="account-name"></span></p>
   <p><strong>Student Number:</strong> <span id="account-number"></span></p>
-  <p><strong>Year Level:</strong> <span id="account-year"></span></p>
+  <p><strong>Year:</strong> <span id="account-year"></span></p>
   <p><strong>Semester:</strong> <span id="account-semester"></span></p>
   <p><strong>Status:</strong> <span id="account-status"></span></p>
 </section>
-
-
 
         <section id="fildis-section" class="section hidden">
           <h3>Course: FILDIS</h3>
