@@ -36,11 +36,12 @@
   <div id="portal-container" class="hidden">
     <div class="portal-layout">
       <nav class="sidebar">
-      <button id="logout-btn" onclick="logout()">Logout</button>
-        <ul>
-        <li>This project was developed by Clifford Guda with assistance Cherice Lopez,and support from the rest of BSIT 12019 section. </li> 
-        </ul>
-      </nav>
+  <button id="logout-btn" onclick="logout()">Logout</button>
+  <div class="sidebar-bottom">
+    <button onclick="showAboutUs()">About Us</button> 
+    <button onclick="showAuthorSection()">Author</button>
+  </div>
+</nav>
 
       <main>
         <header>
@@ -53,7 +54,7 @@
   <span class="score-group">
     <button onclick="showSection('check')">Marka</button>
     <button id="admin-monitor-btn" style="display:none;" onclick="showSection('admin-monitor')">Monitor Students</button>
-    <button id="admin-scores-btn" style="display:none;" onclick="showSection('admin-all-scores')">View All Student Scores</button>
+    <button id="admin-scores-btn" style="display:none;" onclick="showSection('admin-all-scores')">View Student Scores</button>
   </span>
 </div>
 
@@ -227,6 +228,40 @@
           <h3>Quiz Score</h3>
           <p>Your score: <span id="score"></span></p>
         </section>
+
+        <section id="aboutus-section" class="section hidden">
+        <h1>About Us</h1>
+        <p>
+         Maligayang pagdating! Isaalang-alang ang tatlong asignatura na inaalok sa mas mataas na edukasyon sa Pilipinas: FILDIS, SOSLIT, at KOMFIL. Ang mga kursong ito ay naiiba ngunit magkakaugnay, na nagpapaunlad sa wika at kritikal na pag-iisip ng mga mag-aaral sa pamamagitan ng wikang Filipino, at ng lipunang Pilipino. Ang pag-unawa sa kung ano ang pinagtutuunan ng pansin ng bawat isa ay nagbibigay-daan sa mga mag-aaral na pahalagahan ang halaga ng pagkatuto sa wikang pambansa.
+        </p>
+        <p>
+         Ang <strong>FILDIS</strong> (Filipino sa Iba't Ibang Disiplina), ay nagtutulak sa mga hangganan ng Filipino hinggil sa wika at panitikan. Binibigyang-diin nito ang paggamit ng wikang pambansa sa iba't ibang disiplinang pang-akademiko, kaya't hinihiling nito ang mga mag-aaral na magbasa, magsulat, at magsaliksik sa agham, araling panlipunan, at teknolohiya sa wikang Filipino. Ang layunin ay upang ipakita ang lawak ng intelektwal na pakikipag-ugnayan na maaaring ilagay sa paggamit ng Filipino sa ilang larangan ng kaalaman.
+        </p>
+        <p>
+         Ang <strong>SOSLIT</strong> (Sosyedad at Literatura Panitikang Panlipunan) ay nag-aaral sa lipunang Pilipino kaugnay ng panitikan at panitikan na may kaugnayan sa lipunan. Sinusuri ng kurso ang panitikan ng bansa, na kinabibilangan ng mga nakaraang panlipunang realidad at kasalukuyan. Ang layunin ay upang lumikha ng kamalayan at pag-unawa sa mga isyu tulad ng hindi pagkakapantay-pantay, katarungan, pati na rin ang pagkakakilanlan ng kultura, at kung paano hindi lamang sumasalamin ang panitikan ngunit nakakaimpluwensya rin sa lipunan.
+        </p>
+        <p>
+         Ang <strong>KOMFIL</strong> (Komunikasyon at Pananaliksik sa Wika at Kulturang Pilipino) ay isang paksang nakatuon sa kontekstwalisasyon ng paggamit ng wikang Filipino sa iba't ibang sitwasyong pangkomunikasyon na may kaugnayan sa kultura at lipunang Pilipino. Sinisiyasat nito ang pag-unawa sa mga kasanayan sa komunikasyong Filipino, na binibigyang-diin ang kahalagahan at epektibong paggamit ng wikang pambansa sa iba't ibang konteksto, kadalasang kinabibilangan ng mga talakayan sa papel nito sa edukasyon at pagtugon sa mga kontemporaryong isyu sa pamamagitan ng lente ng Filipino.
+        </p>
+      </section>
+
+      <section id="author-section" class="section hidden">
+  <h1>AUTHOR</h1>
+  <div class="author-main" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem;">
+    <img src="img/maam.jpg" alt="Bb.Leila Romar Perjes Bellen" class="dev-photo" style="width:140px; height:140px;">
+    <p style="font-size:1.2rem; font-weight:700; margin-top:0.7rem;">Bb.Leila Romar Perjes Bellen</p>
+    <p>Namuno</p>
+  </div>
+  <h2 style="text-align:center; margin-bottom:1.5rem; font-size:2rem;">Kaagapay sa pagbuo ng website</h2>
+  <div class="developers-grid">
+    <div class="developer">
+      <img src="img/guds.jpg" alt="Guda, Clifford" class="dev-photo">
+      <p><strong>Guda, Clifford</strong></p>
+    </div>
+    <div class="developer">
+      <img src="img/vc.jpg" alt="Lopez, Cherice Nicole" class="dev-photo">
+      <p><strong>Lopez, Cherice Nicole</strong></p>
+    </div>
 
         <section id="module-content" class="section hidden content-section"></section>
         <section id="quiz-content" class="section hidden content-section">
