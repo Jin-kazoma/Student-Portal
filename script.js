@@ -1035,9 +1035,20 @@ function showAllStudentScores(containerId = 'admin-all-scores-content') {
   container.appendChild(table);
 }
 
-// Add this to your showSection function so admin can view all scores
-// ...existing code...
 if (sectionName === 'admin-all-scores') {
   showAllStudentScores('admin-all-scores-content');
 }
-// ...existing code...
+
+function showAboutUs() {
+
+  document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+  
+  document.getElementById('aboutus-section').classList.remove('hidden');
+}
+
+function showAuthorSection() {
+  
+  document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
+  
+  document.getElementById('author-section').classList.remove('hidden');
+}
