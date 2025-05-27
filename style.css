@@ -202,11 +202,33 @@ header h2 {
   backdrop-filter: blur(6px);
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
   justify-content: space-between;
   padding: 1rem 1.5rem;
   color: var(--white);
 }
 
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.sidebar-bottom button {
+  background: var(--pink-7);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sidebar-bottom button:hover {
+  background: var(--pink-8);
+}
 main {
   flex-grow: 1;
   padding: 1rem 2rem;
@@ -280,26 +302,66 @@ header h2 {
   backdrop-filter: blur(6px);
 }
 
-.nav {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
-}
-
 .nav button {
-  background: var(--pink-7);
+  background: linear-gradient(90deg, var(--pink-7) 60%, var(--pink-8) 100%);
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.08rem;
+  letter-spacing: 0.5px;
   color: var(--white);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 12px rgba(176,87,141,0.10);
+  transition: 
+    background 0.2s,
+    box-shadow 0.2s,
+    color 0.2s,
+    transform 0.15s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav button:hover {
-  background: var(--pink-8);
+  background: linear-gradient(90deg, var(--pink-8) 60%, var(--pink-9) 100%);
+  color: #fff0fa;
+  box-shadow: 0 4px 16px rgba(176,87,141,0.18);
+  transform: translateY(-2px) scale(1.04);
 }
+
+.nav {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255,255,255,0.25);
+  border-radius: 14px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 12px rgba(176,87,141,0.07);
+}
+
+.nav > button,
+.score-group > button {
+  flex: 1 1 0;
+  min-width: 120px;
+  margin: 0;
+  box-sizing: border-box;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-group {
+  display: flex;
+  flex: 1 1 0;
+  gap: 1rem;
+}
+
 
 .section {
   margin-top: 1rem;
@@ -562,4 +624,42 @@ header h2 {
 #admin-monitor-list-content > div::before {
   content: "👤";
   font-size: 1.2em;
+}
+h1 {
+  text-align: center;
+  font-size: 2.5rem;      
+  font-weight: 800;      
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #222;            
+}
+#aboutus-section h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #181818;
+  letter-spacing: 1.5px;
+}
+
+.developers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+.developer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+}
+.dev-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #333;
+  margin-bottom: 0.5rem;
 }
