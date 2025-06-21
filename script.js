@@ -915,6 +915,11 @@ function startTimer() {
     }
   }, 1000);
 }
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${minutes}:${secs.toString().padStart(2, '0')}`;
+}
 
 function showScores() {
   checkSection.innerHTML = '<h3>Your Quiz Scores</h3>';
