@@ -901,7 +901,7 @@ users[currentUser.username].scores = currentUser.scores;
 localStorage.setItem('users', JSON.stringify(users));
 
 function startTimer() {
-  timeLeft = 30;
+  timeLeft = 300;
   timerDisplay.textContent = `Time left: ${timeLeft}s`;
 
   clearInterval(timerInterval);
